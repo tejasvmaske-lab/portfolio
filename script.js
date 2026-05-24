@@ -1,3 +1,9 @@
+history.scrollRestoration = "manual";
+
+window.onbeforeunload = function () {
+    window.scrollTo(0, 0);
+};
+
 gsap.registerPlugin(ScrollTrigger);
 
 const avatar = document.querySelector(".avatar");
