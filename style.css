@@ -166,3 +166,22 @@ body{
 .scene.about-active .center-section{
     pointer-events: none;
 }
+
+.tech-section{
+    min-height: 100vh;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.tech-title{
+    color: white;
+    font-size: 7rem;
+    font-weight: bold;
+    letter-spacing: 8px;
+    opacity: 0;
+    transform: translateY(100px);
+}

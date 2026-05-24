@@ -130,3 +130,14 @@ function initScrollAnimations() {
         x: 0
     }, 0.3);
 }
+
+gsap.to(".tech-title", {
+    scrollTrigger: {
+        trigger: ".tech-section",
+        start: "top 70%",
+        end: "top 30%",
+        scrub: 1
+    },
+    opacity: 1,
+    y: 0
+});
