@@ -1,3 +1,5 @@
+gsap.registerPlugin(ScrollTrigger);
+
 const avatar = document.querySelector(".avatar");
 const cursor = document.querySelector(".cursor");
 const hoverItems = document.querySelectorAll("a, .avatar");
@@ -12,36 +14,9 @@ document.addEventListener("mousemove", (e) => {
 
 });
 
-
-gsap.from(".left-section", {
-    opacity: 0,
-    x: -100,
-    duration: 1.5,
-    ease: "power3.out"
-});
-
-gsap.from(".center-section", {
-    opacity: 0,
-    y: 50,
-    duration: 1.5,
-    delay: 0.3,
-    ease: "power3.out"
-});
-
-gsap.from(".right-section", {
-    opacity: 0,
-    x: 100,
-    duration: 1.5,
-    delay: 0.6,
-    ease: "power3.out"
-});
-
 document.addEventListener("mousemove", (e) => {
-
     cursor.style.left = e.clientX + "px";
-
     cursor.style.top = e.clientY + "px";
-
 });
 
 hoverItems.forEach((item) => {
@@ -57,3 +32,94 @@ hoverItems.forEach((item) => {
     });
 
 });
+
+const introTl = gsap.timeline({
+
+    onComplete: initScrollAnimations
+
+});
+
+introTl
+
+.fromTo(".left-section",
+{
+    x: -400,
+    opacity: 0
+},
+{
+    x: 0,
+    opacity: 1,
+    duration: 1.5,
+    ease: "power3.out"
+})
+
+.fromTo(".center-section",
+{
+    y: 50,
+    opacity: 0
+},
+{
+    y: 0,
+    opacity: 1,
+    duration: 1.5,
+    ease: "power3.out"
+}, "-=1")
+
+.fromTo(".right-section",
+{
+    x: 400,
+    opacity: 0
+},
+{
+    x: 0,
+    opacity: 1,
+    duration: 1.5,
+    ease: "power3.out"
+}, "-=1");
+
+
+
+function initScrollAnimations() {
+
+    const tl = gsap.timeline({
+
+        scrollTrigger: {
+
+            trigger: ".scene",
+            start: "top top",
+            end: "+=1500",
+            scrub: 1,
+            pin: true
+
+        }
+
+    });
+
+    tl.to(".left-section", {
+
+        x: -200,
+        opacity: 0
+
+    }, 0)
+
+    .to(".right-section", {
+
+        x: 200,
+        opacity: 0
+
+    }, 0)
+
+    .to(".center-section", {
+
+        x: -300
+
+    }, 0)
+
+    .to(".about-content", {
+
+        opacity: 1,
+        x: 0
+
+    }, 0.3);
+
+}

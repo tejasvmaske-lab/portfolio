@@ -90,6 +90,7 @@
 body{
     cursor: none;
     overflow-x: hidden;
+    min-height: 300vh;
 }
 
 .cursor{
