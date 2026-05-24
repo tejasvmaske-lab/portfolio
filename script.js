@@ -41,19 +41,6 @@ document.addEventListener("mousemove", (e) => {
     cursor.style.top = e.clientY + "px";
 });
 
-hoverItems.forEach((item) => {
-
-    item.addEventListener("mouseenter", () => {
-        cursor.style.transform =
-        "translate(-50%, -50%) scale(2)";
-    });
-
-    item.addEventListener("mouseleave", () => {
-        cursor.style.transform =
-        "translate(-50%, -50%) scale(1)";
-    });
-});
-
 const introTl = gsap.timeline({
     onComplete: initScrollAnimations
 });
