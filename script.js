@@ -36,18 +36,13 @@ hoverItems.forEach((item) => {
         cursor.style.transform =
         "translate(-50%, -50%) scale(1)";
     });
-
 });
 
 const introTl = gsap.timeline({
-
     onComplete: initScrollAnimations
-
 });
 
-introTl
-
-.fromTo(".left-section",
+introTl.fromTo(".left-section",
 {
     x: -400,
     opacity: 0
@@ -83,49 +78,44 @@ introTl
     ease: "power3.out"
 }, "-=1");
 
-
-
 function initScrollAnimations() {
-
     const tl = gsap.timeline({
-
         scrollTrigger: {
-
             trigger: ".scene",
             start: "top top",
             end: "+=1500",
             scrub: 1,
             pin: true
-
         }
-
     });
 
     tl.to(".left-section", {
-
         x: -200,
         opacity: 0
-
     }, 0)
 
     .to(".right-section", {
-
         x: 200,
         opacity: 0
-
     }, 0)
 
     .to(".center-section", {
-
-        x: -300
-
-    }, 0)
+    x: -300,
+    onUpdate: () => {
+        if (tl.progress() > 0.2) {
+            document
+            .querySelector(".scene")
+            .classList.add("about-active");
+        } else {
+            document
+            .querySelector(".scene")
+            .classList.remove("about-active");
+        }
+    }
+}, 0)
 
     .to(".about-content", {
-
         opacity: 1,
         x: 0
-
     }, 0.3);
-
 }

@@ -160,3 +160,7 @@ body{
 .about-content h2{
     font-size: 3.5rem;
 }
+
+.scene.about-active .center-section{
+    pointer-events: none;
+}
