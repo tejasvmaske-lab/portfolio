@@ -129,15 +129,31 @@ function initScrollAnimations() {
         opacity: 1,
         x: 0
     }, 0.3);
-}
 
-gsap.to(".tech-title", {
+    const techTl = gsap.timeline({
     scrollTrigger: {
         trigger: ".tech-section",
-        start: "top 70%",
-        end: "top 30%",
-        scrub: 1
-    },
-    opacity: 1,
-    y: 0
+        start: "top top",
+        end: "+=1500",
+        scrub: 1,
+        pin: true,
+    }
 });
+
+techTl.to(".tech-title", {
+    opacity: 1,
+    scale: 1,
+    y: -250
+}, 0)
+
+.to(".tech-title", {
+    fontSize: "4rem",
+    y: -250,
+    letterSpacing: "4px"
+}, 0.5)
+
+.to(".honeycomb-wrapper", {
+    opacity: 1,
+    y: -100
+}, 0.7);
+}
