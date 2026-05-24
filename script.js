@@ -10,13 +10,29 @@ const avatar = document.querySelector(".avatar");
 const cursor = document.querySelector(".cursor");
 const hoverItems = document.querySelectorAll("a, .avatar");
 
+// document.addEventListener("mousemove", (e) => {
+
+//     let xAxis = (e.pageX - window.innerWidth / 2) / 80;
+//     let yAxis = (e.pageY - window.innerHeight / 2) / 80;
+
+//     avatar.style.transform =
+//     `rotateY(${xAxis}deg) rotateX(${-yAxis}deg)`;
+
+// });
+
+let mouseX = 0;
+let mouseY = 0;
+let scrollRotate = 0;
+let aboutProgress = 0;
+
 document.addEventListener("mousemove", (e) => {
-
-    let xAxis = (e.pageX - window.innerWidth / 2) / 80;
-    let yAxis = (e.pageY - window.innerHeight / 2) / 80;
-
-    avatar.style.transform =
-    `rotateY(${xAxis}deg) rotateX(${-yAxis}deg)`;
+    mouseX = (e.pageX - window.innerWidth / 2) / 80;
+    mouseY = (e.pageY - window.innerHeight / 2) / 80;
+    gsap.to(".avatar", {
+        rotateY: mouseX + scrollRotate,
+        rotateX: -mouseY * (1 - aboutProgress),
+        duration: 0.3
+    });
 
 });
 
@@ -113,6 +129,14 @@ function initScrollAnimations() {
         }
     }
 }, 0)
+
+    .to(".avatar", {
+        rotateY: 20,
+        onUpdate: function () {
+            scrollRotate = gsap.getProperty(".avatar", "rotateY");
+            aboutProgress = tl.progress();
+        }
+    }, 0)
 
     .to(".about-content", {
         opacity: 1,
