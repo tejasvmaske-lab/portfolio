@@ -9,16 +9,8 @@ gsap.registerPlugin(ScrollTrigger);
 const avatar = document.querySelector(".avatar");
 const cursor = document.querySelector(".cursor");
 const hoverItems = document.querySelectorAll("a, .avatar");
-
-// document.addEventListener("mousemove", (e) => {
-
-//     let xAxis = (e.pageX - window.innerWidth / 2) / 80;
-//     let yAxis = (e.pageY - window.innerHeight / 2) / 80;
-
-//     avatar.style.transform =
-//     `rotateY(${xAxis}deg) rotateX(${-yAxis}deg)`;
-
-// });
+const categories = document.querySelectorAll(".category");
+const hexes = document.querySelectorAll(".hex");
 
 let mouseX = 0;
 let mouseY = 0;
@@ -157,3 +149,28 @@ techTl.to(".tech-title", {
     y: -100
 }, 0.7);
 }
+
+categories.forEach(category => {
+    category.addEventListener("mouseenter", () => {
+        const selectedCategory =
+        category.getAttribute("data-category").trim();
+        hexes.forEach(hex => {
+            const hexCategory =
+            hex.getAttribute("data-category").trim();
+            if (hexCategory === selectedCategory) {
+                hex.classList.add("active");
+                hex.classList.remove("dim");
+            } else {
+                hex.classList.add("dim");
+                hex.classList.remove("active");
+            }
+        });
+    });
+
+    category.addEventListener("mouseleave", () => {
+        hexes.forEach(hex => {
+            hex.classList.remove("active");
+            hex.classList.remove("dim");
+        });
+    });
+});

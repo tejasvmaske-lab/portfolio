@@ -202,8 +202,9 @@ body{
     position: absolute;
     top: 55%;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
+    padding: 0 80px;
     opacity: 0;
 }
 
@@ -215,7 +216,6 @@ body{
     rotateZ(-45deg);
     transform-style: preserve-3d;
     top: -100px;
-    left: -100px;
 }
 
 .hex{
@@ -226,6 +226,7 @@ body{
     transition:
     transform 0.45s cubic-bezier(0.22,1,0.36,1),
     opacity 0.4s ease;
+    pointer-events: auto;
 }
 
 .top{
@@ -285,6 +286,26 @@ body{
     z-index: 100;
 }
 
+.hex.active{
+    transform:
+    translateY(-25px)
+    translateZ(40px);
+    z-index: 200;
+}
+
+.hex.active .color-logo{
+    opacity: 1;
+}
+
+.hex.active .white-logo{
+    opacity: 0;
+}
+
+.hex.dim{
+    opacity: 0.18;
+    filter: grayscale(1);
+}
+
 .hex1{
     top: -251px;
     left: 100px;
@@ -311,8 +332,8 @@ body{
 }
 
 .hex6{
-    top: -111px;
-    left: 309px;
+    top: -461px;
+    left: 205px;
 }
 
 .hex7{
@@ -361,8 +382,8 @@ body{
 }
 
 .hex16{
-    top: -461px;
-    left: 205px;
+    top: -111px;
+    left: 309px;
 }
 
 .hex17{
@@ -417,3 +438,43 @@ body{
     transform: scale(1.12);
 }
 
+.tech-right{
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 32px;
+    position: relative;
+    z-index: 20;
+    top: -200px;
+}
+
+.category{
+    color: rgba(255,255,255,0.28);
+    font-size: 1.15rem;
+    font-weight: 500;
+    letter-spacing: 4px;
+    cursor: pointer;
+    transition:
+    color 0.3s ease,
+    transform 0.3s ease,
+    opacity 0.3s ease,
+    text-shadow 0.3s ease;
+    width: fit-content;
+}
+
+.category:hover{
+    color: #00ff96;
+    transform: translateX(12px);
+    text-shadow:
+    0 0 10px rgba(0,255,150,0.5),
+    0 0 20px rgba(0,255,150,0.25);
+}
+
+.tech-left{
+    width: 55%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+}
