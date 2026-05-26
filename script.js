@@ -9,7 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
 const avatar = document.querySelector(".avatar");
 const cursor = document.querySelector(".cursor");
 const hoverItems = document.querySelectorAll("a, .avatar");
-const categories = document.querySelectorAll(".category");
+const categoryWrap = document.querySelectorAll(".category-wrap");
 const hexes = document.querySelectorAll(".hex");
 
 let mouseX = 0;
@@ -150,27 +150,51 @@ techTl.to(".tech-title", {
 }, 0.7);
 }
 
-categories.forEach(category => {
-    category.addEventListener("mouseenter", () => {
+const categoryWraps =
+document.querySelectorAll(".category-wrap");
+
+categoryWraps.forEach(wrap => {
+
+    wrap.addEventListener("mouseenter", () => {
+
+        const category =
+        wrap.querySelector(".category");
+
         const selectedCategory =
-        category.getAttribute("data-category").trim();
+        category.dataset.category;
+
         hexes.forEach(hex => {
+
             const hexCategory =
-            hex.getAttribute("data-category").trim();
+            hex.dataset.category;
+
             if (hexCategory === selectedCategory) {
+
                 hex.classList.add("active");
                 hex.classList.remove("dim");
-            } else {
+
+            }
+
+            else {
+
                 hex.classList.add("dim");
                 hex.classList.remove("active");
+
             }
+
         });
+
     });
 
-    category.addEventListener("mouseleave", () => {
+    wrap.addEventListener("mouseleave", () => {
+
         hexes.forEach(hex => {
+
             hex.classList.remove("active");
             hex.classList.remove("dim");
+
         });
+
     });
+
 });

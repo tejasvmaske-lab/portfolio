@@ -460,7 +460,6 @@ body{
     transform 0.3s ease,
     opacity 0.3s ease,
     text-shadow 0.3s ease;
-    width: fit-content;
 }
 
 .category:hover{
@@ -477,4 +476,9 @@ body{
     justify-content: center;
     align-items: center;
     pointer-events: none;
+}
+
+.category-wrap{
+    display: inline-block;
+    padding: 8px 0;
 }
