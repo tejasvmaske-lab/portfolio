@@ -490,7 +490,7 @@ body{
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    padding-top:100px;
+    padding-top:30px;
 }
 
 .projects-header{
@@ -519,17 +519,17 @@ body{
     overflow: hidden;
     position: relative;
     opacity: 0;
-    transform: translateY(100px);
+    transform: translateY(80px);
     display: flex;
     justify-content: center;
-    align-items: center
+    align-items: center;
+    padding-left: 250px
 }
 
 .projects-track{
     display: flex;
     align-items: center;
     gap: 80px;
-    padding: 0 35vw;
     width: max-content;
 }
 
@@ -644,8 +644,14 @@ body{
     transform: translateY(-4px);
 }
 
-.project-card:not(.active){
+.project-card{
     transform: scale(0.82);
     opacity: 0.35;
     filter: blur(2px);
+}
+
+.project-card.active{
+    transform: scale(1);
+    opacity: 1;
+    filter: blur(0px);
 }

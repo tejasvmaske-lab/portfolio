@@ -11,6 +11,8 @@ const cursor = document.querySelector(".cursor");
 const hoverItems = document.querySelectorAll("a, .avatar");
 const categoryWrap = document.querySelectorAll(".category-wrap");
 const hexes = document.querySelectorAll(".hex");
+const projectCards = document.querySelectorAll(".project-card");
+const projectsTrack = document.querySelector(".projects-track");
 
 let mouseX = 0;
 let mouseY = 0;
@@ -149,11 +151,15 @@ techTl.to(".tech-title", {
     y: -100
 }, 0.7);
 
+gsap.set(projectsTrack, {
+    x: 850
+});
+
 const projTl = gsap.timeline({
     scrollTrigger: {
         trigger: ".projects-section",
         start: "top top",
-        end: "+=1500",
+        end: "+=4000",
         scrub: 1,
         pin: true,
     }
@@ -161,24 +167,65 @@ const projTl = gsap.timeline({
 
 projTl.to(".projects-title", {
     opacity: 1,
-    scale: 1,
-    y: -250
+    y: -250,
+    duration: 1
 }, 0)
 
 .to(".projects-title", {
     fontSize: "4rem",
-    y: -250,
-    letterSpacing: "4px"
-}, 0.5)
+    letterSpacing: "4px",
+    duration: 1
+}, 1)
 
-projTl.to(".projects-wrapper", {
+.to(".projects-wrapper", {
     opacity: 1,
-    y: -40
-}, 0.7)
+    y: 0,
+    duration: 1
+}, 1.5)
+
+.to(projectsTrack, {
+
+        x: () => -(projectsTrack.scrollWidth - window.innerWidth) - 850,
+
+    ease: "none",
+
+    onUpdate: () => {
+
+        const center =
+        window.innerWidth / 2;
+
+        projectCards.forEach(card => {
+
+            const rect =
+            card.getBoundingClientRect();
+
+            const cardCenter =
+            rect.left + rect.width / 2;
+
+            const distance =
+            Math.abs(center - cardCenter);
+
+            if (distance < 450) {
+
+                card.classList.add("active");
+
+            }
+
+            else {
+
+                card.classList.remove("active");
+
+            }
+
+        });
+
+    }
+
+}, 3);
+
 }
 
-const categoryWraps =
-document.querySelectorAll(".category-wrap");
+const categoryWraps = document.querySelectorAll(".category-wrap");
 
 categoryWraps.forEach(wrap => {
 
