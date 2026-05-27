@@ -148,6 +148,33 @@ techTl.to(".tech-title", {
     opacity: 1,
     y: -100
 }, 0.7);
+
+const projTl = gsap.timeline({
+    scrollTrigger: {
+        trigger: ".projects-section",
+        start: "top top",
+        end: "+=1500",
+        scrub: 1,
+        pin: true,
+    }
+});
+
+projTl.to(".projects-title", {
+    opacity: 1,
+    scale: 1,
+    y: -250
+}, 0)
+
+.to(".projects-title", {
+    fontSize: "4rem",
+    y: -250,
+    letterSpacing: "4px"
+}, 0.5)
+
+projTl.to(".projects-wrapper", {
+    opacity: 1,
+    y: -40
+}, 0.7)
 }
 
 const categoryWraps =
@@ -198,3 +225,5 @@ categoryWraps.forEach(wrap => {
     });
 
 });
+
+ScrollTrigger.refresh();
