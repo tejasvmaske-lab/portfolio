@@ -5,6 +5,7 @@ window.onbeforeunload = function () {
 };
 
 gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollToPlugin);
 
 const avatar = document.querySelector(".avatar");
 const cursor = document.querySelector(".cursor");
@@ -308,52 +309,59 @@ document.querySelectorAll(".interest-card").forEach(card => {
     });
 });
 
+const positions = {
+    hero: 0,
+    tech: 2751,
+    projects: 4700,
+    interests: 8900,
+    contact: 10000
+};
+
 navItems.forEach(item => {
 
     item.addEventListener("click", () => {
 
-        const target =
-        document.getElementById(
-            item.dataset.target
-        );
-
-        target.scrollIntoView({
-            behavior: "smooth"
+        gsap.to(window, {
+            scrollTo: positions[item.dataset.target],
+            duration: 1.2,
+            ease: "power3.inOut"
         });
 
     });
 
 });
 
-window.addEventListener("scroll", () => {
-
-    let current = "";
-
-    sections.forEach(section => {
-
-        const top = section.offsetTop;
-        const height = section.offsetHeight;
-
-        if (
-            scrollY >= top - 300
-        ) {
-            current = section.id;
-        }
-
-    });
+function setActive(id) {
 
     navItems.forEach(item => {
 
         item.classList.remove("active");
 
-        if (
-            item.dataset.target === current
-        ) {
+        if(item.dataset.target === id) {
             item.classList.add("active");
         }
 
     });
 
+}
+
+window.addEventListener("scroll", () => {
+    const y = window.scrollY;
+    if (y < 2751) {
+        setActive("hero");
+    }
+    else if (y < 4700) {
+        setActive("tech");
+    }
+    else if (y < 8900) {
+        setActive("projects");
+    }
+    else if (y < 10000) {
+        setActive("interests");
+    }
+    else {
+        setActive("contact");
+    }
 });
 
 ScrollTrigger.refresh();
