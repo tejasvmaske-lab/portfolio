@@ -13,6 +13,8 @@ const categoryWrap = document.querySelectorAll(".category-wrap");
 const hexes = document.querySelectorAll(".hex");
 const projectCards = document.querySelectorAll(".project-card");
 const projectsTrack = document.querySelector(".projects-track");
+const navItems = document.querySelectorAll(".nav-item");
+const sections = document.querySelectorAll("section");
 
 let mouseX = 0;
 let mouseY = 0;
@@ -304,6 +306,54 @@ document.querySelectorAll(".interest-card").forEach(card => {
             ease: "power2.out"
         });
     });
+});
+
+navItems.forEach(item => {
+
+    item.addEventListener("click", () => {
+
+        const target =
+        document.getElementById(
+            item.dataset.target
+        );
+
+        target.scrollIntoView({
+            behavior: "smooth"
+        });
+
+    });
+
+});
+
+window.addEventListener("scroll", () => {
+
+    let current = "";
+
+    sections.forEach(section => {
+
+        const top = section.offsetTop;
+        const height = section.offsetHeight;
+
+        if (
+            scrollY >= top - 300
+        ) {
+            current = section.id;
+        }
+
+    });
+
+    navItems.forEach(item => {
+
+        item.classList.remove("active");
+
+        if (
+            item.dataset.target === current
+        ) {
+            item.classList.add("active");
+        }
+
+    });
+
 });
 
 ScrollTrigger.refresh();
