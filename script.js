@@ -151,26 +151,30 @@ techTl.to(".tech-title", {
     y: -100
 }, 0.7);
 
-gsap.set(projectsTrack, {
-    x: 850
-});
+const firstCard = projectCards[0];
+const lastCard = projectCards[projectCards.length - 1];
+
+const startX = (window.innerWidth / 2) - (firstCard.offsetWidth / 2);
+const endX = -(projectsTrack.scrollWidth - window.innerWidth + (lastCard.offsetWidth / 2) + 40);
+
+gsap.set(projectsTrack, { x: startX });
 
 const projTl = gsap.timeline({
     scrollTrigger: {
         trigger: ".projects-section",
         start: "top top",
-        end: "+=4000",
+        end: "+=3500", 
         scrub: 1,
         pin: true,
+        invalidateOnRefresh: true 
     }
 });
 
 projTl.to(".projects-title", {
     opacity: 1,
-    y: -250,
+    y: -220,
     duration: 1
 }, 0)
-
 .to(".projects-title", {
     fontSize: "4rem",
     letterSpacing: "4px",
@@ -184,45 +188,24 @@ projTl.to(".projects-title", {
 }, 1.5)
 
 .to(projectsTrack, {
-
-        x: () => -(projectsTrack.scrollWidth - window.innerWidth) - 850,
-
+    x: endX,
     ease: "none",
-
+    duration: 4, 
     onUpdate: () => {
-
-        const center =
-        window.innerWidth / 2;
-
+        const center = window.innerWidth / 2;
         projectCards.forEach(card => {
+            const rect = card.getBoundingClientRect();
+            const cardCenter = rect.left + rect.width / 2;
+            const distance = Math.abs(center - cardCenter);
 
-            const rect =
-            card.getBoundingClientRect();
-
-            const cardCenter =
-            rect.left + rect.width / 2;
-
-            const distance =
-            Math.abs(center - cardCenter);
-
-            if (distance < 450) {
-
+            if (distance < 300) {
                 card.classList.add("active");
-
-            }
-
-            else {
-
+            } else {
                 card.classList.remove("active");
-
             }
-
         });
-
     }
-
-}, 3);
-
+}, 2.5); 
 }
 
 const categoryWraps = document.querySelectorAll(".category-wrap");
