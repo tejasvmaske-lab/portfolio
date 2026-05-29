@@ -206,6 +206,38 @@ projTl.to(".projects-title", {
         });
     }
 }, 2.5); 
+
+const outsideTl = gsap.timeline({
+    scrollTrigger: {
+        trigger: ".outside-section",
+        start: "top top",
+        end: "+=2000",
+        scrub: 1,
+        pin: true
+    }
+});
+
+outsideTl.to(".outside-title", {
+    opacity: 1,
+    y: -250
+}, 0)
+
+.to(".outside-title", {
+    fontSize: "4rem",
+    letterSpacing: "4px"
+}, 0.5);
+
+outsideTl.fromTo(".interest-card",
+{
+    opacity:0,
+    y:80
+},
+{
+    opacity:1,
+    y:0,
+    stagger:0.15
+},
+0.8);
 }
 
 const categoryWraps = document.querySelectorAll(".category-wrap");
