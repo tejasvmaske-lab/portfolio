@@ -657,3 +657,16 @@ body{
     opacity: 1;
     filter: blur(0px);
 }
+
+.project-disabled{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 24px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.45);
+    cursor: default;
+    user-select: none;
+}

@@ -172,7 +172,7 @@ const projTl = gsap.timeline({
 
 projTl.to(".projects-title", {
     opacity: 1,
-    y: -220,
+    y: -270,
     duration: 1
 }, 0)
 .to(".projects-title", {
