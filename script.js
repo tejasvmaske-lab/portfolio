@@ -288,4 +288,22 @@ categoryWraps.forEach(wrap => {
 
 });
 
+document.querySelectorAll(".interest-card").forEach(card => {
+    card.addEventListener("mouseenter", () => {
+        gsap.to(card, {
+            y: -10,
+            duration: 0.3,
+            ease: "power2.out"
+        });
+    });
+
+    card.addEventListener("mouseleave", () => {
+        gsap.to(card, {
+            y: 0,
+            duration: 0.3,
+            ease: "power2.out"
+        });
+    });
+});
+
 ScrollTrigger.refresh();

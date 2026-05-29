@@ -692,6 +692,7 @@ body{
     align-items:center;
     z-index:10;
     text-align:center;
+    pointer-events: none;
 }
 
 .outside-title{
@@ -710,6 +711,8 @@ body{
     gap:40px;
     transform:translateY(100px);
     margin-top: 80px;
+    position: relative;
+    z-index:20;
 }
 
 .interest-card{
