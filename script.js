@@ -83,7 +83,7 @@ function initScrollAnimations() {
         scrollTrigger: {
             trigger: ".scene",
             start: "top top",
-            end: "+=1500",
+            end: "+=500",
             scrub: 1,
             pin: true
         }
@@ -99,14 +99,17 @@ function initScrollAnimations() {
         opacity: 0
     }, 0)
 
-    .to(".center-section", {
-    x: -300,
+.to(".center-section", {
+    y: -200,
+    scale: 0.85,
+    opacity: 0,
     onUpdate: () => {
         if (tl.progress() > 0.2) {
             document
             .querySelector(".scene")
             .classList.add("about-active");
-        } else {
+        }
+        else {
             document
             .querySelector(".scene")
             .classList.remove("about-active");
@@ -241,6 +244,34 @@ outsideTl.fromTo(".interest-card",
     stagger:0.15
 },
 0.8);
+
+const aboutTl = gsap.timeline({
+    scrollTrigger:{
+        trigger:".final-about-section",
+        start:"top top",
+        end:"+=1500",
+        scrub:1,
+        pin:true
+    }
+});
+
+aboutTl
+
+.to(".about-title",{
+    y:-250,
+    fontSize:"4rem",
+    letterSpacing:"4px"
+},0)
+
+.from(".final-avatar",{
+    y:200,
+    opacity:0
+},0.7)
+
+.from(".final-about-content",{
+    x:150,
+    opacity:0
+},0.7);
 }
 
 const categoryWraps = document.querySelectorAll(".category-wrap");
@@ -311,10 +342,10 @@ document.querySelectorAll(".interest-card").forEach(card => {
 
 const positions = {
     hero: 0,
-    tech: 2751,
-    projects: 4700,
-    interests: 8900,
-    contact: 10000
+    tech: 1700,
+    projects: 3700,
+    interests: 7940,
+    about: 10193
 };
 
 navItems.forEach(item => {
@@ -347,20 +378,20 @@ function setActive(id) {
 
 window.addEventListener("scroll", () => {
     const y = window.scrollY;
-    if (y < 2751) {
+    if (y < 1700) {
         setActive("hero");
     }
-    else if (y < 4700) {
+    else if (y < 3700) {
         setActive("tech");
     }
-    else if (y < 8900) {
+    else if (y < 7940) {
         setActive("projects");
     }
-    else if (y < 10000) {
+    else if (y < 10193) {
         setActive("interests");
     }
     else {
-        setActive("contact");
+        setActive("about");
     }
 });
 
