@@ -971,3 +971,36 @@ body{
     letter-spacing:10px;
     opacity:1;
 }
+
+.footer{
+    min-height:20vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
+.footer-message{
+    font-size:1.6rem;
+    color:white;
+    font-style:italic;
+}
+
+.footer-name{
+    margin-top:15px;
+    color:#00ff95;
+}
+
+.footer-line{
+    width:250px;
+    height:1px;
+    margin-bottom:30px;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        #00ff95,
+        transparent
+    );
+}
+
