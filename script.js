@@ -395,4 +395,27 @@ window.addEventListener("scroll", () => {
     }
 });
 
+window.addEventListener("load", () => {
+
+    const tl = gsap.timeline();
+
+    tl.to(".loader-logo span", {
+        backgroundSize: "100% 100%",
+        duration: 0.5,
+        stagger: 0.25,
+        ease: "power2.out"
+    })
+
+    .to("#loader", {
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.out"
+    })
+
+    .set("#loader", {
+        display: "none"
+    });
+
+});
+
 ScrollTrigger.refresh();

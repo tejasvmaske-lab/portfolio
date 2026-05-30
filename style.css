@@ -1004,3 +1004,41 @@ body{
     );
 }
 
+/* =========================
+   LOADER
+========================= */
+
+#loader{
+    position: fixed;
+    inset: 0;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+}
+
+.loader-logo{
+    display: flex;
+    gap: 1rem;
+    font-size: 8rem;
+    font-weight: 700;
+    font-family: "Cormorant Garamond", serif;
+}
+
+.loader-logo span{
+    color: transparent;
+    -webkit-text-stroke: 2px rgba(255,255,255,0.4);
+
+    background: linear-gradient(
+        90deg,
+        #00ff9d 0%,
+        #00ff9d 100%
+    );
+
+    background-size: 0% 100%;
+    background-repeat: no-repeat;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+}
